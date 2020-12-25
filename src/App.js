@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Header from './components/header';
 import AddNewTodo from './components/addNewTodo';
-import TodoItem from './components/todoItem';
+import TodoList from './components/todoList';
 import Footer from './components/footer'
+import  './scss/main.scss'
 
 const App = () => {
   const defaultTodo = JSON.parse(localStorage.getItem('react-todo')) || [];
@@ -28,14 +29,10 @@ const App = () => {
   return (
     <div className="App">
       <Header filterState={filterState} setFilterState={setFilterState}/>
-      <AddNewTodo todos={todos} setTodos={setTodos}/>
-      <section className="todo-list">
-        {todosFilter().map(todo => {
-          return (
-            <TodoItem key={todo.todoId} todo={todo} todos={todos} setTodos={setTodos}/>
-          )
-        })}
-      </section>
+      <main>
+        <AddNewTodo todos={todos} setTodos={setTodos}/>
+        <TodoList todos={todosFilter()} setTodos={setTodos}/>
+      </main>
       <Footer todos={todos} />
     </div>
   );
