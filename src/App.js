@@ -3,7 +3,6 @@ import Header from './components/header';
 import AddNewTodo from './components/addNewTodo';
 import TodoList from './components/todoList';
 import Footer from './components/footer'
-import  './scss/main.scss'
 
 const App = () => {
   const defaultTodo = JSON.parse(localStorage.getItem('react-todo')) || [];
