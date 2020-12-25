@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from './components/header';
 import AddNewTodo from './components/addNewTodo';
 import TodoItem from './components/todoItem';
-import Counter from './components/footer'
+import Footer from './components/footer'
 
 const App = () => {
   const defaultTodo = JSON.parse(localStorage.getItem('react-todo')) || [];
@@ -44,7 +44,7 @@ const App = () => {
           )
         })}
       </section>
-      <Counter todos={todos} />
+      <Footer todos={todos} />
     </div>
   );
 }
