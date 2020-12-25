@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Header from './components/header/header';
-import AddNewTodo from './components/addNewTodo/addNewTodo';
-import TodoItem from './components/todoItem/todoItem';
-import Counter from './components/footer/counter'
+import Header from './components/header';
+import AddNewTodo from './components/addNewTodo';
+import TodoItem from './components/todoItem';
+import Counter from './components/footer'
 
 const App = () => {
   const defaultTodo = JSON.parse(localStorage.getItem('react-todo')) || [];
