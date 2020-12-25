@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from './components/header';
 import AddNewTodo from './components/addNewTodo';
 import TodoItem from './components/todoItem';
@@ -8,14 +8,6 @@ const App = () => {
   const defaultTodo = JSON.parse(localStorage.getItem('react-todo')) || [];
   const [todos, setTodos] = useState(defaultTodo);
   const [filterState, setFilterState] = useState('all');
-
-  useEffect(() => {
-    setLocalStorage();
-   }, [todos])
-
-  const setLocalStorage = () => {
-    window.localStorage.setItem('react-todo', JSON.stringify(todos));
-  }
 
   const sortTodos = () => {
     return [...todos].sort((a, b) => {
