@@ -32,7 +32,7 @@ const App = () => {
         <AddNewTodo todos={todos} setTodos={setTodos}/>
         <TodoList todos={todosFilter()} setTodos={setTodos}/>
       </main>
-      <Footer todos={todos} />
+      <Footer todos={todos} filterState={filterState}/>
     </div>
   );
 }
