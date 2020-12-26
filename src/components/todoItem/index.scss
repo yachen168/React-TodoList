@@ -155,11 +155,11 @@
     width: 100%;
     margin-left: 40px;
     color: #757575;
-    i {
+    svg {
       display: none;
       margin: 10px 10px 0 5px;
     }
-    i.active {
+    svg.active {
       display: inline-block;
     }
     .hint-date {

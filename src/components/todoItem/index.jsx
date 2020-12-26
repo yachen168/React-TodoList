@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faPen, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import { faStar, faPen, faTrashAlt, faCalendarAlt, faCommentDots, faFile, faPlus, faTimes} from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import './index.scss';
 
@@ -98,20 +98,18 @@ const TodoItem = ({todo, todos, setTodos}) => {
           </span>
         </div>
         <div className="hint-icons">
-          <i
-            className="far fa-calendar-alt"
-            ><span className="hint-date">todo.todoDate.split('-').join('/')</span></i
-          >
-          <i className="far fa-file"></i>
-          <i
-            className="far fa-comment-dots"
-          ></i>
+          <span>
+            <FontAwesomeIcon icon={faCalendarAlt} className={`${todo.todoDate ? 'active' : ''}`}/>
+            <span className="hint-date">{todo.todoDate.split('-').join('/')}</span>
+          </span>
+          <FontAwesomeIcon icon={faFile}/>
+          <FontAwesomeIcon icon={faCommentDots} className={todo.todoComment ? 'active' : ''}/>
         </div>
       </div>
       <div className="card">
         <div className="card-body">
           <div className="deadline">
-            <h3><i className="far fa-calendar-alt"></i>Deadline</h3>
+            <h3><FontAwesomeIcon icon={faCalendarAlt}/>Deadline</h3>
             <div className="input-wrapper">
               <input
                 className="date"
@@ -130,7 +128,7 @@ const TodoItem = ({todo, todos, setTodos}) => {
             </div>
           </div>
           <div className="file">
-            <h3><i className="far fa-file"></i>File</h3>
+            <h3><FontAwesomeIcon icon={faFile}/>File</h3>
             <label className="upload">
               <input className="upload-input" type="file" />
               <span className="upload-icon">+</span>
@@ -160,7 +158,7 @@ const TodoItem = ({todo, todos, setTodos}) => {
             className="button-confirm"
             onClick={confirmBtnHandler}
           >
-            <i className="fas fa-plus"></i>Save
+            <FontAwesomeIcon icon={faPlus}/>Save
           </button>
         </div>
       </div>
