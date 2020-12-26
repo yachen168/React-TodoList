@@ -5,7 +5,8 @@ const Header = ({ filterState, setFilterState }) => {
   const navItems = [
     {title: 'My Tasks', status: 'all'}, 
     {title: 'In progress', status: 'inProgress'},
-    {title: 'Completed', status: 'completed'}];
+    {title: 'Completed', status: 'completed'}
+  ];
 
   const navItemHandler = (e) => {
     const status = e.currentTarget.dataset.name;
