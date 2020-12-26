@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import TodoItem from '../todoItem';
+
 
 const TodoList = ({todos, setTodos}) => {
   
@@ -12,6 +14,11 @@ const TodoList = ({todos, setTodos}) => {
       })}
     </section>
   )
+}
+
+TodoList.propTypes = {
+  todos: PropTypes.array.isRequired, 
+  setTodos: PropTypes.func.isRequired,
 }
 
 export default TodoList;

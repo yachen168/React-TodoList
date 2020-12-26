@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPen, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import './index.scss';
 
 
@@ -163,6 +164,12 @@ const TodoItem = ({todo, todos, setTodos}) => {
       </div>
     </form>
   );
+}
+
+TodoItem.propTypes = {
+  todo: PropTypes.object.isRequired,
+  todos: PropTypes.array.isRequired,
+  setTodos: PropTypes.func.isRequired
 }
 
 export default TodoItem;

@@ -1,4 +1,5 @@
 import './index.scss';
+import PropTypes from 'prop-types';
 
 const Header = ({ filterState, setFilterState }) => {
   const navItems = [
@@ -29,6 +30,11 @@ const Header = ({ filterState, setFilterState }) => {
       </nav>
     </header>
   );
+}
+
+Header.propTypes = {
+  filterState: PropTypes.string.isRequired, 
+  setFilterState: PropTypes.func.isRequired,
 }
 
 export default Header;

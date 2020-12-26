@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPen, faCalendarAlt, faCommentDots, faFile, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
@@ -131,5 +132,9 @@ const AddNewTodo = ({todos, setTodos}) => {
   );
 }
 
+AddNewTodo.propTypes = {
+  todos: PropTypes.array.isRequired, 
+  setTodos: PropTypes.func.isRequired,
+}
 
 export default AddNewTodo;
