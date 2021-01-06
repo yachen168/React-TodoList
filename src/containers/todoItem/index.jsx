@@ -1,15 +1,14 @@
 import { useState, useContext } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faPen, faTrashAlt, faCalendarAlt, faCommentDots, faFile, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
-import './index.scss';
-
 import { ContextStore } from '../../App';
 import useSubmitHandler from "../../hooks/useSubmit";
+import PropTypes from 'prop-types';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faPen, faTrashAlt, faCalendarAlt, faCommentDots, faFile, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import TodoDropdown from '../../components/todoDropdown';
 import FormButton from '../../components/formButton';
-
+import './index.scss';
 
 const TodoItem = ({todo}) => {
   const { dispatch } = useContext(ContextStore)

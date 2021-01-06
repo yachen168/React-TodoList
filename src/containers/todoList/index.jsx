@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
+import { ContextStore } from '../../App';
+
 import TodoItem from '../todoItem';
 import './index.scss';
-
-import { ContextStore } from '../../App'
 
 const TodoList = () => {
   const { state } = useContext(ContextStore);

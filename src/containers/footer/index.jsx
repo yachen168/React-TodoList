@@ -1,9 +1,9 @@
-import './index.scss';
-import Counter from '../../components/counter';
-import Hint from '../../components/hint';
-
 import { useContext } from 'react';
 import { ContextStore } from '../../App'
+
+import Counter from '../../components/counter';
+import Hint from '../../components/hint';
+import './index.scss';
 
 const Footer = () => {
   const { state } = useContext(ContextStore)

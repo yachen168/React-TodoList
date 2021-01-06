@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarAlt, faFile, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt, faFile } from '@fortawesome/free-solid-svg-icons';
 
 import './index.scss';
 

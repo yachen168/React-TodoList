@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import './index.scss';
-
 import { ContextStore } from '../../App';
+
 import { navItems } from '../../constant';
+import './index.scss';
 
 const Header = () => {
   const { state, dispatch } = useContext(ContextStore);

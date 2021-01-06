@@ -1,15 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ContextStore } from '../../App';
+import useSubmitHandler from "../../hooks/useSubmit";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPen, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
-import './index.scss';
-
-import { useContext } from 'react';
-import {ContextStore} from '../../App';
-import { defaultNewTodo } from '../../constant';
-import useSubmitHandler from "../../hooks/useSubmit";
 
 import TodoDropdown from "../../components/todoDropdown";
 import FormButton from '../../components/formButton';
+import { defaultNewTodo } from '../../constant';
+import './index.scss';
 
 
 const AddNewTodo = () => {
