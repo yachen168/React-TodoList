@@ -16,17 +16,15 @@ const Header = () => {
   return (
     <header>
       <nav>
-        <ul>
-          {navItems().map(item => {
-            return (
-              <li key={item.status}
-                  className={`nav-item ${state.status === item.status ? 'active' : ''}`}
-                  onClick={navItemHandler(item)}>
-                  {item.title}
-              </li>
-            )
-          })}
-        </ul>
+        {navItems().map(item => {
+          return (
+            <div key={item.status}
+              className={`nav-item ${state.status === item.status ? 'active' : ''}`}
+              onClick={navItemHandler(item)}>
+              {item.title}
+            </div>
+          )
+        })}
       </nav>
     </header>
   );

@@ -1,4 +1,6 @@
 import './index.scss';
+import Counter from '../../components/counter';
+import Hint from '../../components/hint';
 
 import { useContext } from 'react';
 import { ContextStore } from '../../App'
@@ -10,25 +12,14 @@ const Footer = () => {
   const completedNum = state.todos.length - leftNum;
   const isShowLeftCount = state.status !== 'completed';
 
-  if (isShowLeftCount) {
     return (
       <footer>
-        <h4 className="todo-count ">
-          { leftNum } <span>{ leftNum > 1 ? 'tasks' : 'task' }</span> left
-        </h4>
-        <p className="hint">點擊 ☆ 任務置頂，任務完成置底</p>
+        <Counter isShowLeftCount={isShowLeftCount}
+          leftNum={leftNum}
+          completedNum={completedNum}/>
+        <Hint/>
       </footer>
     )
-  }else {
-    return (
-      <footer>
-        <h4 className="todo-count">
-          { completedNum } <span>{ completedNum > 1 ? 'tasks' : 'task' }</span> completed
-        </h4>
-        <p className="hint">點擊 ☆ 任務置頂，任務完成置底</p>
-      </footer>
-    )
-  }
 }
 
 export default Footer;
