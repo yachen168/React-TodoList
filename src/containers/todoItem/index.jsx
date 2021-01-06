@@ -1,11 +1,15 @@
 import { useState, useContext } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faPen, faTrashAlt, faCalendarAlt, faCommentDots, faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faPen, faTrashAlt, faCalendarAlt, faCommentDots, faFile, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import './index.scss';
 
 import { ContextStore } from '../../App';
 import useSubmitHandler from "../../hooks/useSubmit";
+
+import TodoDropdown from '../../components/todoDropdown';
+import FormButton from '../../components/formButton';
+
 
 const TodoItem = ({todo}) => {
   const { dispatch } = useContext(ContextStore)
@@ -75,62 +79,24 @@ const TodoItem = ({todo}) => {
           <FontAwesomeIcon icon={faCommentDots} className={cacheTodo.todoComment ? 'active' : ''}/>
         </div>
       </div>
-      <div className="card">
-        <div className="card-body">
-          <div className="deadline">
-            <h3><FontAwesomeIcon icon={faCalendarAlt}/>Deadline</h3>
-            <div className="input-wrapper">
-              <input
-                className="date"
-                type="date"
-                data-name="todoDate"
-                value={cacheTodo.todoDate}
-                onChange={editTodo}
-              />
-              <input
-                className="time"
-                type="time"
-                data-name="todoTime"
-                value={cacheTodo.todoTime}
-                onChange={editTodo}
-              />
-            </div>
-          </div>
-          <div className="file">
-            <h3><FontAwesomeIcon icon={faFile}/>File</h3>
-            <label className="upload">
-              <input className="upload-input" type="file" />
-              <span className="upload-icon">+</span>
-            </label>
-          </div>
-          <div className="comment">
-            <h3><i className="far fa-comment-dots"></i>Comment</h3>
-            <textarea
-              className="comment-content"
-              placeholder="Type your memo here..."
-              data-name="todoComment"
-              value={cacheTodo.todoComment}
-              onChange={editTodo}
-            ></textarea>
-          </div>
-        </div>
-        <div className="card-footer">
-          <button
-            type="reset"
-            className="button-cancel"
-            onClick={cancelBtnHandler}
-          >
-            <i className="fas fa-times"></i>Cancel
-          </button>
-          <button
-            type="submit"
-            className="button-confirm"
-            onClick={submitHandler}
-          >
-            <FontAwesomeIcon icon={faPlus}/>Save
-          </button>
-        </div>
-      </div>
+      <TodoDropdown todo={cacheTodo}
+        editTodo={editTodo}
+        cancelBtnHandler={cancelBtnHandler}
+        submitHandler={submitHandler}
+      >
+        <FormButton buttonType="reset"
+          className="button-cancel"
+          clickHandler={cancelBtnHandler}
+        >
+          <FontAwesomeIcon icon={faTimes}/>Cancel
+        </FormButton>
+        <FormButton buttonType="submit"
+          className="button-confirm"
+          clickHandler={submitHandler}
+        >
+          <FontAwesomeIcon icon={faPlus}/>Save
+        </FormButton>
+      </TodoDropdown>
     </form>
   );
 }

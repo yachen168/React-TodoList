@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faPen, faCalendarAlt, faCommentDots, faFile, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faPen, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
 
 import { useContext } from 'react';
 import {ContextStore} from '../../App';
-import useSubmitHandler from "../../hooks/useSubmit";
 import { defaultNewTodo } from '../../constant';
+import useSubmitHandler from "../../hooks/useSubmit";
+
+import TodoDropdown from "../../components/todoDropdown";
+import FormButton from '../../components/formButton';
 
 
 const AddNewTodo = () => {
@@ -71,63 +74,24 @@ const AddNewTodo = () => {
             </span>
           </div>
         </div>
-        <div className="card">
-          <div className="card-body">
-            <div className="deadline">
-              <h3 className="icon">
-                <FontAwesomeIcon icon={faCalendarAlt}/>Deadline
-              </h3>
-              <div className="input-wrapper">
-                <input
-                  className="new-date"
-                  type="date"
-                  data-name="todoDate"
-                  onChange={editNewTodo}
-                />
-                <input
-                  className="new-time"
-                  type="time"
-                  data-name="todoTime"
-                  onChange={editNewTodo}
-                />
-              </div>
-            </div>
-            <div className="file">
-              <h3><FontAwesomeIcon icon={faFile}/>File</h3>
-              <label className="upload">
-                <input className="upload-input" type="file" />
-                <span className="upload-icon">+</span>
-              </label>
-            </div>
-            <div className="comment">
-              <h3>
-                <FontAwesomeIcon icon={faCommentDots}/>Comment
-              </h3>
-              <textarea
-                className="add-comment"
-                placeholder="Type your memo here..."
-                data-name="todoComment"
-                value={newTodo.todoComment}
-                onChange={editNewTodo}
-              ></textarea>
-            </div>
-          </div>
-          <div className="card-footer new-card-footer">
-            <button
-              type="reset"
-              className="button-cancel new-button-cancel"
-              onClick={cancelBtnHandler}
-            >
-              <FontAwesomeIcon icon={faTimes}/>Cancel
-            </button>
-            <button
-              className="button-confirm new-button-confirm"
-              onClick={submitHandler}
-            >
-              <FontAwesomeIcon icon={faPlus}/>Add Task
-            </button>
-          </div>
-        </div>
+        <TodoDropdown todo={newTodo}
+          editTodo={editNewTodo}
+          cancelBtnHandler={cancelBtnHandler}
+          submitHandler={submitHandler}
+        >
+          <FormButton buttonType="reset"
+            className="button-cancel"
+            clickHandler={cancelBtnHandler}
+          >
+            <FontAwesomeIcon icon={faTimes}/>Cancel
+          </FormButton>
+          <FormButton buttonType="submit"
+            className="button-confirm"
+            clickHandler={submitHandler}
+          >
+            <FontAwesomeIcon icon={faPlus}/>Add Task
+          </FormButton>
+        </TodoDropdown>
       </form>
     </section>
   );
