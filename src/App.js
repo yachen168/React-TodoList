@@ -37,8 +37,10 @@ const App = () => {
     <ContextStore.Provider value={{state, dispatch}}>
       <div className="App">
         <Header/>
-          <AddNewTodo/>
-          <TodoList/>
+          <main>
+            <AddNewTodo/>
+            <TodoList/>
+          </main>
         <Footer/>
       </div>
     </ContextStore.Provider>
