@@ -11,17 +11,8 @@ const TodoItem = ({todo}) => {
   const [cacheTodo, setCacheTodo] = useState({...todo});
   const [isEditingTodo, setIsEditingTodo] = useState(false);
 
-
   const toggleTodo = () => {
     setIsEditingTodo(!isEditingTodo);
-  }
-
-  const markTodo = () => {
-    dispatch({ type: 'STAR_TODO', payload: {todo}});
-  }
-
-  const completedTodo = () => {
-    dispatch({ type: 'COMPLETE_TODO', payload: {todo}});
   }
 
   const editTodo = (e) => {
@@ -39,10 +30,6 @@ const TodoItem = ({todo}) => {
     toggleTodo();
   }
 
-  const deleteTodo = () => {
-    dispatch({ type: 'DELETE_TODO', payload: {todo: cacheTodo}})
-  }
-
   return (
     <form className={`edit-area ${isEditingTodo ? 'active' : ''}`}
           onSubmit={(e)=>e.preventDefault()}>
@@ -58,7 +45,7 @@ const TodoItem = ({todo}) => {
             type="checkbox"
             data-name="isCompleted"
             checked={todo.isCompleted}
-            onChange={completedTodo}
+            onChange={() => dispatch({ type: 'COMPLETE_TODO', payload: {todo}})}
           />
           <input
             className="todo-name"
@@ -70,13 +57,13 @@ const TodoItem = ({todo}) => {
           />
         </label>
         <div className="icon-wrapper">
-          <span className="star" data-name="isStarred" onClick={markTodo}>
+          <span className="star" data-name="isStarred" onClick={() => dispatch({ type: 'STAR_TODO', payload: {todo}})}>
             <FontAwesomeIcon icon={faStar}/>
           </span>
           <span className="pen" onClick={toggleTodo}>
             <FontAwesomeIcon icon={faPen}/>
           </span>
-          <span className="delete" onClick={deleteTodo}>
+          <span className="delete" onClick={() => dispatch({ type: 'DELETE_TODO', payload: {todo: cacheTodo}})}>
             <FontAwesomeIcon icon={faTrashAlt}/>
           </span>
         </div>

@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { ContextStore } from '../../App'
 
 const Footer = () => {
-  const { state, dispatch } = useContext(ContextStore)
+  const { state } = useContext(ContextStore)
   
   const leftNum = state.todos.filter(todo => !todo.isCompleted).length;
   const completedNum = state.todos.length - leftNum;
