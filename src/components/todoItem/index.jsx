@@ -5,25 +5,23 @@ import PropTypes from 'prop-types';
 import './index.scss';
 
 import { ContextStore } from '../../App';
+import useSubmitHandler from "../../hooks/useSubmit";
 
 const TodoItem = ({todo}) => {
   const { dispatch } = useContext(ContextStore)
   const [cacheTodo, setCacheTodo] = useState({...todo});
   const [isEditingTodo, setIsEditingTodo] = useState(false);
 
-  const toggleTodo = () => {
-    setIsEditingTodo(!isEditingTodo);
-  }
-
   const editTodo = (e) => {
     const name = e.currentTarget.dataset.name;
     setCacheTodo({...cacheTodo, [name]: e.target.value});
   }
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    toggleTodo();
+  const toggleTodo = () => {
+    setIsEditingTodo(!isEditingTodo);
   }
+
+  const submitHandler = useSubmitHandler(toggleTodo, cacheTodo.todoTitle);
 
   return (
     <form className={`edit-area ${isEditingTodo ? 'active' : ''}`}

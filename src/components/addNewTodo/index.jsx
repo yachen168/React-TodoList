@@ -4,7 +4,8 @@ import { faStar, faPen, faCalendarAlt, faCommentDots, faFile, faPlus, faTimes } 
 import './index.scss';
 
 import { useContext } from 'react';
-import {ContextStore} from '../../App'
+import {ContextStore} from '../../App';
+import useSubmitHandler from "../../hooks/useSubmit";
 
 const defaultNewTodo = {
   todoTitle: "",
@@ -38,10 +39,7 @@ const AddNewTodo = () => {
     }
   }
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    toggleNewTodo();
-  }
+  const submitHandler = useSubmitHandler(toggleNewTodo, newTodo.todoTitle);
 
   return (
     <section className="new-todo">
