@@ -47,6 +47,12 @@ const reducer = (state, action) => {
       return {...state, todos: sortTodos(newTodos)};
     }
 
+    case 'SWITCH_TODO': {
+      return {
+        ...state, status: action.payload
+      }
+    }
+
     default:
       return state;
   }

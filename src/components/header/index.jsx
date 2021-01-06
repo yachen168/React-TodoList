@@ -1,16 +1,22 @@
+import React, { useContext } from 'react';
 import './index.scss';
 
-const Header = ({ filterState, setFilterState }) => {
-  const navItems = [
-    {title: 'My Tasks', status: 'all'}, 
-    {title: 'In progress', status: 'inProgress'},
-    {title: 'Completed', status: 'completed'}
-  ];
+import { ContextStore } from '../../App'
 
-  const navItemHandler = (e) => {
-    const status = e.currentTarget.dataset.name;
-      setFilterState(status)
+const navItems = [
+  {title: 'My Tasks', status: 'all'}, 
+  {title: 'In progress', status: 'inProgress'},
+  {title: 'Completed', status: 'completed'}
+];
+
+const Header = ({ filterState, setFilterState }) => {
+  const { dispatch } = useContext(ContextStore);
+
+  const navItemHandler = (item) => {
+    return () => {
+      dispatch({ type: 'SWITCH_TODO', payload: item.status})
     }
+  }
 
   return (
     <header>
@@ -21,7 +27,7 @@ const Header = ({ filterState, setFilterState }) => {
               <li key={item.status}
                   className={`nav-item ${filterState === item.status ? 'active' : ''}`} 
                   data-name={item.status}
-                  onClick={navItemHandler}>
+                  onClick={navItemHandler(item)}>
                   {item.title}
               </li>
             )
@@ -31,10 +37,5 @@ const Header = ({ filterState, setFilterState }) => {
     </header>
   );
 }
-
-// Header.propTypes = {
-//   filterState: PropTypes.string.isRequired, 
-//   setFilterState: PropTypes.func.isRequired,
-// }
 
 export default Header;
