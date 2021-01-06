@@ -6,22 +6,13 @@ import './index.scss';
 import { useContext } from 'react';
 import {ContextStore} from '../../App';
 import useSubmitHandler from "../../hooks/useSubmit";
-
-const defaultNewTodo = {
-  todoTitle: "",
-  todoComment: "",
-  todoDate: "",
-  todoTime: "",
-  isStarred: false,
-  isCompleted: false,
-  isEditing: false,
-}
+import { defaultNewTodo } from '../../constant';
 
 
 const AddNewTodo = () => {
   const { dispatch } = useContext(ContextStore);
 
-  const [newTodo, setNewTodo] = useState(defaultNewTodo);
+  const [newTodo, setNewTodo] = useState(defaultNewTodo());
   const [isEditingNewTodo, setIsEditingNewTodo] = useState(false);
 
   const confirmBtnHandler = () => {

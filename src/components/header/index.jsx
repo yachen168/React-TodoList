@@ -1,13 +1,8 @@
 import React, { useContext } from 'react';
 import './index.scss';
 
-import { ContextStore } from '../../App'
-
-const navItems = [
-  {title: 'My Tasks', status: 'all'}, 
-  {title: 'In progress', status: 'inProgress'},
-  {title: 'Completed', status: 'completed'}
-];
+import { ContextStore } from '../../App';
+import { navItems } from '../../constant';
 
 const Header = () => {
   const { state, dispatch } = useContext(ContextStore);
@@ -22,7 +17,7 @@ const Header = () => {
     <header>
       <nav>
         <ul>
-          {navItems.map(item => {
+          {navItems().map(item => {
             return (
               <li key={item.status}
                   className={`nav-item ${state.status === item.status ? 'active' : ''}`}
