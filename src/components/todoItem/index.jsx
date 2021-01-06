@@ -6,10 +6,6 @@ import './index.scss';
 
 import { ContextStore } from '../../App';
 
-TodoItem.propTypes = {
-  todo: PropTypes.object.isRequired
-}
-
 const TodoItem = ({todo}) => {
   const { dispatch } = useContext(ContextStore)
   const [cacheTodo, setCacheTodo] = useState({...todo});
@@ -138,6 +134,10 @@ const TodoItem = ({todo}) => {
       </div>
     </form>
   );
+}
+
+TodoItem.propTypes = {
+  todo: PropTypes.object.isRequired
 }
 
 export default TodoItem;
