@@ -9,8 +9,8 @@ const navItems = [
   {title: 'Completed', status: 'completed'}
 ];
 
-const Header = ({ filterState, setFilterState }) => {
-  const { dispatch } = useContext(ContextStore);
+const Header = () => {
+  const { state, dispatch } = useContext(ContextStore);
 
   const navItemHandler = (item) => {
     return () => {
@@ -25,7 +25,7 @@ const Header = ({ filterState, setFilterState }) => {
           {navItems.map(item => {
             return (
               <li key={item.status}
-                  className={`nav-item ${filterState === item.status ? 'active' : ''}`} 
+                  className={`nav-item ${state.status === item.status ? 'active' : ''}`} 
                   data-name={item.status}
                   onClick={navItemHandler(item)}>
                   {item.title}
