@@ -17,11 +17,18 @@ const TodoItem = ({todo}) => {
     setCacheTodo({...cacheTodo, [name]: e.target.value});
   }
 
-  const toggleTodo = () => {
+  const confirmBtnHandler = () => {
+    dispatch({ type: 'EDIT_TODO', payload: {todo: cacheTodo}});
+
     setIsEditingTodo(!isEditingTodo);
   }
 
-  const submitHandler = useSubmitHandler(toggleTodo, cacheTodo.todoTitle);
+  const cancelBtnHandler = () => {
+    setIsEditingTodo(!isEditingTodo);
+    setCacheTodo(todo);
+  }
+
+  const submitHandler = useSubmitHandler(confirmBtnHandler, cacheTodo.todoTitle);
 
   return (
     <form className={`edit-area ${isEditingTodo ? 'active' : ''}`}
@@ -52,7 +59,7 @@ const TodoItem = ({todo}) => {
           <span className="star" onClick={() => dispatch({ type: 'STAR_TODO', payload: {todo}})}>
             <FontAwesomeIcon icon={faStar}/>
           </span>
-          <span className="pen" onClick={toggleTodo}>
+          <span className="pen" onClick={() => setIsEditingTodo(!isEditingTodo)}>
             <FontAwesomeIcon icon={faPen}/>
           </span>
           <span className="delete" onClick={() => dispatch({ type: 'DELETE_TODO', payload: {todo: cacheTodo}})}>
@@ -109,16 +116,16 @@ const TodoItem = ({todo}) => {
         </div>
         <div className="card-footer">
           <button
-            type="submit"
+            type="reset"
             className="button-cancel"
-            onClick={() => setCacheTodo(todo)}
+            onClick={cancelBtnHandler}
           >
             <i className="fas fa-times"></i>Cancel
           </button>
           <button
             type="submit"
             className="button-confirm"
-            onClick={() => dispatch({ type: 'EDIT_TODO', payload: {todo: cacheTodo}})}
+            onClick={submitHandler}
           >
             <FontAwesomeIcon icon={faPlus}/>Save
           </button>

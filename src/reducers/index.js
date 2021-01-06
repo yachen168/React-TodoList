@@ -19,8 +19,10 @@ const reducer = (state, action) => {
       
     case 'EDIT_TODO': {
       const index = state.todos.findIndex(item => item.todoId === action.payload.todo.todoId);
-      state.todos[index] = action.payload.todo;
-      return {...state}; 
+      const newTodos = [...state.todos];
+      
+      newTodos[index] = action.payload.todo;
+      return {...state, todos: newTodos}; 
     }
   
     case 'STAR_TODO': {

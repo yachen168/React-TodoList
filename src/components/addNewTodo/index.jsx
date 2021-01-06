@@ -24,8 +24,14 @@ const AddNewTodo = () => {
   const [newTodo, setNewTodo] = useState(defaultNewTodo);
   const [isEditingNewTodo, setIsEditingNewTodo] = useState(false);
 
-  const toggleNewTodo = (e) => {
-    e.preventDefault();
+  const confirmBtnHandler = () => {
+    dispatch({type: 'ADD_TODO', payload: {...newTodo, todoId: Date.now()}});
+
+    setIsEditingNewTodo(!isEditingNewTodo);
+    setNewTodo(defaultNewTodo);
+  }
+
+  const cancelBtnHandler = () => {
     setIsEditingNewTodo(!isEditingNewTodo);
     setNewTodo(defaultNewTodo);
   }
@@ -40,11 +46,11 @@ const AddNewTodo = () => {
     }
   }
 
-  const submitHandler = useSubmitHandler(toggleNewTodo, newTodo.todoTitle);
+  const submitHandler = useSubmitHandler(confirmBtnHandler, newTodo.todoTitle);
 
   return (
     <section className="new-todo">
-      <button className="add-todo" onClick={toggleNewTodo}>+ Add Task</button>
+      <button className="add-todo" onClick={() => setIsEditingNewTodo(!isEditingNewTodo)}>+ Add Task</button>
       <form className={`edit-area new-todo-edit-area ${isEditingNewTodo ? 'active' : ''}`}
             onSubmit={submitHandler}>
         <div  className={`todo-bar ${newTodo.isStarred ? 'active' : ''}`}>
@@ -117,15 +123,15 @@ const AddNewTodo = () => {
           </div>
           <div className="card-footer new-card-footer">
             <button
-              type="submit"
+              type="reset"
               className="button-cancel new-button-cancel"
-              onClick={toggleNewTodo}
+              onClick={cancelBtnHandler}
             >
               <FontAwesomeIcon icon={faTimes}/>Cancel
             </button>
             <button
               className="button-confirm new-button-confirm"
-              onClick={() => dispatch({type: 'ADD_TODO', payload: {...newTodo, todoId: Date.now()}})}
+              onClick={submitHandler}
             >
               <FontAwesomeIcon icon={faPlus}/>Add Task
             </button>

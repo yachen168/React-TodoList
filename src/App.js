@@ -15,7 +15,6 @@ const initialState = {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [filterState, setFilterState] = useState('all');
 
   useEffect(() => {
     setLocalStorage();
