@@ -17,6 +17,7 @@ import { ContextStore } from '../../App'
 const TodoList = () => {
   const { state } = useContext(ContextStore);
 
+  console.log('List')
   return (
     <section className="todo-list">
       {

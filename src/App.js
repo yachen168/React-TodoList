@@ -25,13 +25,13 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [filterState, setFilterState] = useState('all');
 
-  // useEffect(() => {
-  //   setLocalStorage();
-  //  }, [state]);
+  useEffect(() => {
+    setLocalStorage();
+   }, [state]);
   
-  // const setLocalStorage = () => {
-  //   window.localStorage.setItem('react-todo', JSON.stringify(state.todos));
-  // }
+  const setLocalStorage = () => {
+    window.localStorage.setItem('react-todo', JSON.stringify(state.todos));
+  }
   
   return (
     <ContextStore.Provider value={{state, dispatch}}>

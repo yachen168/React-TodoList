@@ -25,16 +25,26 @@ const reducer = (state, action) => {
   
     case 'STAR_TODO': {
       const index = state.todos.findIndex(item => item.todoId === action.payload.todo.todoId);
-      state.todos[index].isStarred = !state.todos[index].isStarred;
-      
-      console.log(sortTodos(state.todos))
-      return {...state, todos: sortTodos(state.todos)};
+      const newTodos = [...state.todos];
+
+      newTodos[index] = {
+        ...newTodos[index],
+        isStarred: !newTodos[index].isStarred,
+      };
+
+      return {...state, todos: sortTodos(newTodos)};
     }
 
     case 'COMPLETE_TODO': {
       const index = state.todos.findIndex(item => item.todoId === action.payload.todo.todoId);
-      state.todos[index].isCompleted = !state.todos[index].isCompleted;
-      return {...state, todos: sortTodos(state.todos)};
+      const newTodos = [...state.todos];
+
+      newTodos[index] = {
+        ...newTodos[index],
+        isCompleted: !newTodos[index].isCompleted,
+      };
+
+      return {...state, todos: sortTodos(newTodos)};
     }
 
     default:

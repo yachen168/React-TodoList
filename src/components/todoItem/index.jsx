@@ -35,7 +35,6 @@ const TodoItem = ({todo}) => {
   }
 
   const cancelBtnHandler = () => {
-    console.log(todo)
     setCacheTodo(todo);
     toggleTodo();
   }
