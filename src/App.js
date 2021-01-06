@@ -19,7 +19,7 @@ const App = () => {
 
   useEffect(() => {
     setLocalStorage();
-   }, [state]);
+   }, [state.todos]);
   
   const setLocalStorage = () => {
     window.localStorage.setItem('react-todo', JSON.stringify(state.todos));
