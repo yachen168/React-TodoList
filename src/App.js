@@ -8,14 +8,6 @@ import reducer from './reducers'
 
 const ContextStore = createContext();
 
-// const sortTodos = (todos) => {
-//   return [...todos].sort((a, b) => {
-//         let scoreA = (a.isStarred ? 100 : 0) + (a.isCompleted ? -200 : 0);
-//         let scoreB = (b.isStarred ? 100 : 0) + (b.isCompleted ? -200 : 0);
-//         return scoreA - scoreB;
-//       })
-// }
-
 const initialState = {
   todos: JSON.parse(localStorage.getItem('react-todo')) || [],
   status: 'all'
