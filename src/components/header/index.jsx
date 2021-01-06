@@ -1,5 +1,4 @@
 import './index.scss';
-import PropTypes from 'prop-types';
 
 const Header = ({ filterState, setFilterState }) => {
   const navItems = [

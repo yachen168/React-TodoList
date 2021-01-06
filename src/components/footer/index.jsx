@@ -1,5 +1,4 @@
 import './index.scss';
-// import PropTypes from 'prop-types';
 
 import { useContext } from 'react';
 import { ContextStore } from '../../App'
@@ -30,7 +29,6 @@ const Footer = () => {
       </footer>
     )
   }
-  
 }
 
 export default Footer;
