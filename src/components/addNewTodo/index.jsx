@@ -38,9 +38,8 @@ const AddNewTodo = () => {
     }
   }
 
-  const confirmBtnHandler = () => {
-    dispatch({type: 'ADD_TODO', payload: {...newTodo, todoId: Date.now()}});
-    setNewTodo(defaultNewTodo);
+  const submitHandler = (e) => {
+    e.preventDefault();
     toggleNewTodo();
   }
 
@@ -48,7 +47,7 @@ const AddNewTodo = () => {
     <section className="new-todo">
       <button className="add-todo" onClick={toggleNewTodo}>+ Add Task</button>
       <form className={`edit-area new-todo-edit-area ${isEditingNewTodo ? 'active' : ''}`}
-            onSubmit={(e)=>e.preventDefault()}>
+            onSubmit={submitHandler}>
         <div  className={`todo-bar ${newTodo.isStarred ? 'active' : ''}`}>
           <label className="todo-title">
             <input
@@ -127,7 +126,7 @@ const AddNewTodo = () => {
             </button>
             <button
               className="button-confirm new-button-confirm"
-              onClick={confirmBtnHandler}
+              onClick={() => dispatch({type: 'ADD_TODO', payload: {...newTodo, todoId: Date.now()}})}
             >
               <FontAwesomeIcon icon={faPlus}/>Add Task
             </button>

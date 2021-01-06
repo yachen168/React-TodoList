@@ -20,19 +20,14 @@ const TodoItem = ({todo}) => {
     setCacheTodo({...cacheTodo, [name]: e.target.value});
   }
 
-  const confirmBtnHandler = () => {
-    dispatch({ type: 'EDIT_TODO', payload: {todo: cacheTodo}});
-    toggleTodo();
-  }
-
-  const cancelBtnHandler = () => {
-    setCacheTodo(todo);
+  const submitHandler = (e) => {
+    e.preventDefault();
     toggleTodo();
   }
 
   return (
     <form className={`edit-area ${isEditingTodo ? 'active' : ''}`}
-          onSubmit={(e)=>e.preventDefault()}>
+          onSubmit={submitHandler}>
       <div className={`todo-bar ${todo.isStarred ? 'active' : ''}`}>
         <div className="hover-dots">
           <span>∙</span>
@@ -43,7 +38,6 @@ const TodoItem = ({todo}) => {
           <input
             className="checkbox"
             type="checkbox"
-            data-name="isCompleted"
             checked={todo.isCompleted}
             onChange={() => dispatch({ type: 'COMPLETE_TODO', payload: {todo}})}
           />
@@ -57,7 +51,7 @@ const TodoItem = ({todo}) => {
           />
         </label>
         <div className="icon-wrapper">
-          <span className="star" data-name="isStarred" onClick={() => dispatch({ type: 'STAR_TODO', payload: {todo}})}>
+          <span className="star" onClick={() => dispatch({ type: 'STAR_TODO', payload: {todo}})}>
             <FontAwesomeIcon icon={faStar}/>
           </span>
           <span className="pen" onClick={toggleTodo}>
@@ -119,14 +113,14 @@ const TodoItem = ({todo}) => {
           <button
             type="submit"
             className="button-cancel"
-            onClick={cancelBtnHandler}
+            onClick={() => setCacheTodo(todo)}
           >
             <i className="fas fa-times"></i>Cancel
           </button>
           <button
             type="submit"
             className="button-confirm"
-            onClick={confirmBtnHandler}
+            onClick={() => dispatch({ type: 'EDIT_TODO', payload: {todo: cacheTodo}})}
           >
             <FontAwesomeIcon icon={faPlus}/>Save
           </button>

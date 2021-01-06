@@ -25,8 +25,7 @@ const Header = () => {
           {navItems.map(item => {
             return (
               <li key={item.status}
-                  className={`nav-item ${state.status === item.status ? 'active' : ''}`} 
-                  data-name={item.status}
+                  className={`nav-item ${state.status === item.status ? 'active' : ''}`}
                   onClick={navItemHandler(item)}>
                   {item.title}
               </li>
