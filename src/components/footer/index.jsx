@@ -1,10 +1,15 @@
 import './index.scss';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-const Footer = ({todos, filterState}) => {
-  const leftNum = todos.filter(todo => !todo.isCompleted).length;
-  const completedNum = todos.length - leftNum;
-  const isShowLeftCount = filterState !== 'completed';
+import { useContext } from 'react';
+import { ContextStore } from '../../App'
+
+const Footer = () => {
+  const { state, dispatch } = useContext(ContextStore)
+  
+  const leftNum = state.todos.filter(todo => !todo.isCompleted).length;
+  const completedNum = state.todos.length - leftNum;
+  const isShowLeftCount = state.status !== 'completed';
 
   if (isShowLeftCount) {
     return (
@@ -26,11 +31,6 @@ const Footer = ({todos, filterState}) => {
     )
   }
   
-}
-
-Footer.propTypes = {
-  todos: PropTypes.array.isRequired,
-  filterState: PropTypes.string.isRequired
 }
 
 export default Footer;

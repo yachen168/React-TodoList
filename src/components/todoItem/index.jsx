@@ -1,64 +1,48 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPen, faTrashAlt, faCalendarAlt, faCommentDots, faFile, faPlus, faTimes} from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import './index.scss';
 
+import { ContextStore } from '../../App';
 
-const TodoItem = ({todo, todos, setTodos}) => {
-
-  const [cacheTodo, setCacheTodo] = useState(todo);
+const TodoItem = ({todo}) => {
+  const { dispatch } = useContext(ContextStore)
+  const [cacheTodo, setCacheTodo] = useState({...todo});
   const [isEditingTodo, setIsEditingTodo] = useState(false);
 
-  useEffect(() => {
-    setLocalStorage();
-   }, [todos]);
-
-  const setLocalStorage = () => {
-    window.localStorage.setItem('react-todo', JSON.stringify(todos));
-  }
 
   const toggleTodo = () => {
     setIsEditingTodo(!isEditingTodo);
   }
 
+  const markTodo = () => {
+    dispatch({ type: 'STAR_TODO', payload: {todo}});
+  }
+
+  const completedTodo = () => {
+    dispatch({ type: 'COMPLETE_TODO', payload: {todo}});
+  }
+
   const editTodo = (e) => {
     const name = e.currentTarget.dataset.name;
-
-    if (name === 'isStarred' || name === 'isCompleted'){
-      cacheTodo[name] = !cacheTodo[name];
-
-      const index = todos.findIndex(item => item.todoId === todo.todoId);
-      const newTodos= [...todos];
-  
-      newTodos[index] = cacheTodo;
-
-      setTodos(newTodos);
-    }else{
-      setCacheTodo({...cacheTodo, [name]: e.target.value})
-    }
+    setCacheTodo({...cacheTodo, [name]: e.target.value});
   }
 
   const confirmBtnHandler = () => {
-    const index = todos.findIndex(item => item.todoId === todo.todoId);
-    const newTodos= [...todos];
-
-    newTodos[index] = cacheTodo;
-
-    setTodos(newTodos);
+    dispatch({ type: 'EDIT_TODO', payload: {todo: cacheTodo}});
     toggleTodo();
   }
 
   const cancelBtnHandler = () => {
+    console.log(todo)
     setCacheTodo(todo);
     toggleTodo();
   }
 
   const deleteTodo = () => {
-    setTodos(todos.filter(item=>item.todoId !== todo.todoId));
+    dispatch({ type: 'DELETE_TODO', payload: {todo: cacheTodo}})
   }
-
- 
 
   return (
     <form className={`edit-area ${isEditingTodo ? 'active' : ''}`}
@@ -75,7 +59,7 @@ const TodoItem = ({todo, todos, setTodos}) => {
             type="checkbox"
             data-name="isCompleted"
             checked={todo.isCompleted}
-            onChange={editTodo}
+            onChange={completedTodo}
           />
           <input
             className="todo-name"
@@ -87,7 +71,7 @@ const TodoItem = ({todo, todos, setTodos}) => {
           />
         </label>
         <div className="icon-wrapper">
-          <span className="star" data-name="isStarred" onClick={editTodo}>
+          <span className="star" data-name="isStarred" onClick={markTodo}>
             <FontAwesomeIcon icon={faStar}/>
           </span>
           <span className="pen" onClick={toggleTodo}>
@@ -99,11 +83,11 @@ const TodoItem = ({todo, todos, setTodos}) => {
         </div>
         <div className="hint-icons">
           <span>
-            <FontAwesomeIcon icon={faCalendarAlt} className={`${todo.todoDate ? 'active' : ''}`}/>
+            <FontAwesomeIcon icon={faCalendarAlt} className={`${cacheTodo.todoDate ? 'active' : ''}`}/>
             <span className="hint-date">{todo.todoDate.split('-').join('/')}</span>
           </span>
           <FontAwesomeIcon icon={faFile}/>
-          <FontAwesomeIcon icon={faCommentDots} className={todo.todoComment ? 'active' : ''}/>
+          <FontAwesomeIcon icon={faCommentDots} className={cacheTodo.todoComment ? 'active' : ''}/>
         </div>
       </div>
       <div className="card">
@@ -142,7 +126,7 @@ const TodoItem = ({todo, todos, setTodos}) => {
               data-name="todoComment"
               value={cacheTodo.todoComment}
               onChange={editTodo}
-            >todo.todoComment</textarea>
+            ></textarea>
           </div>
         </div>
         <div className="card-footer">
@@ -167,9 +151,7 @@ const TodoItem = ({todo, todos, setTodos}) => {
 }
 
 TodoItem.propTypes = {
-  todo: PropTypes.object.isRequired,
-  todos: PropTypes.array.isRequired,
-  setTodos: PropTypes.func.isRequired
+  todo: PropTypes.object.isRequired
 }
 
 export default TodoItem;

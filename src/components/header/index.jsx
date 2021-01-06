@@ -33,9 +33,9 @@ const Header = ({ filterState, setFilterState }) => {
   );
 }
 
-Header.propTypes = {
-  filterState: PropTypes.string.isRequired, 
-  setFilterState: PropTypes.func.isRequired,
-}
+// Header.propTypes = {
+//   filterState: PropTypes.string.isRequired, 
+//   setFilterState: PropTypes.func.isRequired,
+// }
 
 export default Header;

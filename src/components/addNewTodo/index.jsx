@@ -1,20 +1,24 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPen, faCalendarAlt, faCommentDots, faFile, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './index.scss';
 
-const AddNewTodo = ({todos, setTodos}) => {
+import { useContext } from 'react';
+import {ContextStore} from '../../App'
 
-  const defaultNewTodo = {
-    todoTitle: "",
-    todoComment: "",
-    todoDate: "",
-    todoTime: "",
-    isStarred: false,
-    isCompleted: false,
-    isEditing: false,
-  }
+const defaultNewTodo = {
+  todoTitle: "",
+  todoComment: "",
+  todoDate: "",
+  todoTime: "",
+  isStarred: false,
+  isCompleted: false,
+  isEditing: false,
+}
+
+
+const AddNewTodo = () => {
+  const { dispatch } = useContext(ContextStore);
 
   const [newTodo, setNewTodo] = useState(defaultNewTodo);
   const [isEditingNewTodo, setIsEditingNewTodo] = useState(false);
@@ -35,7 +39,8 @@ const AddNewTodo = ({todos, setTodos}) => {
   }
 
   const confirmBtnHandler = () => {
-    setTodos([...todos, {...newTodo, todoId: Date.now()}]);
+    dispatch({type: 'ADD_TODO', payload: {...newTodo, todoId: Date.now()}});
+    setNewTodo(defaultNewTodo);
     toggleNewTodo();
   }
 
@@ -50,6 +55,7 @@ const AddNewTodo = ({todos, setTodos}) => {
               className="checkbox"
               type="checkbox"
               data-name="isCompleted"
+              checked={newTodo.isCompleted}
               onChange={editNewTodo}
             />
             <input
@@ -130,11 +136,6 @@ const AddNewTodo = ({todos, setTodos}) => {
       </form>
     </section>
   );
-}
-
-AddNewTodo.propTypes = {
-  todos: PropTypes.array.isRequired, 
-  setTodos: PropTypes.func.isRequired,
 }
 
 export default AddNewTodo;

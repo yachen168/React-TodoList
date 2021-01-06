@@ -1,26 +1,32 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useContext} from 'react';
 import TodoItem from '../todoItem';
 import './index.scss';
 
+import { ContextStore } from '../../App'
 
-const TodoList = ({todos, setTodos}) => {
-  
+
+  // const todosFilter = (todos) => {
+  //   return todos.filter((todo) => {
+  //     if (state.status === "all") return true;
+  //     if (state.status === "inProgress") return !todo.isCompleted;
+  //     if (state.status === "completed") return todo.isCompleted;
+  //   });
+  // }
+
+
+const TodoList = () => {
+  const { state } = useContext(ContextStore);
+
   return (
     <section className="todo-list">
       {
-        todos.map(todo => {
+        state.todos.map(todo => {
           return (
-            <TodoItem key={todo.todoId} todo={todo} todos={todos} setTodos={setTodos}/>
+            <TodoItem key={todo.todoId} todo={todo}/>
           )
       })}
     </section>
   )
-}
-
-TodoList.propTypes = {
-  todos: PropTypes.array.isRequired, 
-  setTodos: PropTypes.func.isRequired,
 }
 
 export default TodoList;
