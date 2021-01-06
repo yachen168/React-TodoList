@@ -24,7 +24,8 @@ const AddNewTodo = () => {
   const [newTodo, setNewTodo] = useState(defaultNewTodo);
   const [isEditingNewTodo, setIsEditingNewTodo] = useState(false);
 
-  const toggleNewTodo = () => {
+  const toggleNewTodo = (e) => {
+    e.preventDefault();
     setIsEditingNewTodo(!isEditingNewTodo);
     setNewTodo(defaultNewTodo);
   }
