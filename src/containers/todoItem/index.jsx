@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faPen, faTrashAlt, faCalendarAlt, faCommentDots, faFile, faPlus, faTimes} from '@fortawesome/free-solid-svg-icons';
+import { faStar, faPen, faTrashAlt, faCalendarAlt, faCommentDots, faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import './index.scss';
 

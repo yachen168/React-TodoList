@@ -1,8 +1,7 @@
-import { useCallback } from "react";
 
 export default function useSubmitHandler(confirmCallback, inputValue) {
 
-  return useCallback(e => {
+  return e => {
       e.preventDefault();
       
       if (!inputValue) {
@@ -10,5 +9,5 @@ export default function useSubmitHandler(confirmCallback, inputValue) {
       }else{
         confirmCallback();
       }
-    });
+    };
 }

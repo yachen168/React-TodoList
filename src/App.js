@@ -1,8 +1,8 @@
-import React, { useState, createContext, useReducer, useEffect } from "react";
-import Header from './components/header';
-import AddNewTodo from './components/addNewTodo';
-import TodoList from './components/todoList';
-import Footer from './components/footer'
+import React, { createContext, useReducer, useEffect } from "react";
+import Header from './containers/header';
+import AddNewTodo from './containers/newTodo';
+import TodoList from './containers/todoList';
+import Footer from './containers/footer'
 
 import reducer from './reducers'
 
