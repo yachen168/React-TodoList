@@ -1,15 +1,7 @@
-const sortTodos = (todos) => {
-  return [...todos].sort((a, b) => {
-        let scoreA = (a.isStarred ? 100 : 0) + (a.isCompleted ? -200 : 0);
-        let scoreB = (b.isStarred ? 100 : 0) + (b.isCompleted ? -200 : 0);
-        return scoreA - scoreB;
-      })
-}
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO': {
-      return {...state, todos: sortTodos([...state.todos, action.payload])};
+      return {...state, todos: [...state.todos, action.payload]};
     }
 
     case 'DELETE_TODO': {
@@ -34,7 +26,7 @@ const reducer = (state, action) => {
         isStarred: !newTodos[index].isStarred,
       };
 
-      return {...state, todos: sortTodos(newTodos)};
+      return {...state, todos: newTodos};
     }
 
     case 'COMPLETE_TODO': {
@@ -46,7 +38,7 @@ const reducer = (state, action) => {
         isCompleted: !newTodos[index].isCompleted,
       };
 
-      return {...state, todos: sortTodos(newTodos)};
+      return {...state, todos: newTodos};
     }
 
     case 'SWITCH_TODO': {

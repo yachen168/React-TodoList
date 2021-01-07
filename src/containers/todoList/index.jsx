@@ -9,6 +9,14 @@ const TodoList = () => {
 
   const { todos, status } = state;
 
+  const sortTodos = (todos) => {
+    return [...todos].sort((a, b) => {
+          let scoreA = (a.isStarred ? 100 : 0) + (a.isCompleted ? -200 : 0);
+          let scoreB = (b.isStarred ? 100 : 0) + (b.isCompleted ? -200 : 0);
+          return scoreA - scoreB;
+        })
+  }
+
   const todosFilter = (todos, status) => {
     return todos.filter(todo => {
       if (status === 'all') return true;
@@ -17,10 +25,12 @@ const TodoList = () => {
     })
   }
 
+  const displayedTodos = todosFilter(sortTodos(todos), status);
+
   return (
     <section className="todo-list">
       {
-        todosFilter(todos, status).map(todo => {
+        displayedTodos.map(todo => {
           return (
             <TodoItem key={todo.todoId} todo={todo}/>
           )
