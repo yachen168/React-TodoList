@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { ContextStore } from '../../App';
 import useSubmitHandler from "../../hooks/useSubmit";
+import { editDoneTodo, completeTodo, starTodo, deleteTodo } from '../../action';
 import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,7 +22,7 @@ const TodoItem = ({todo}) => {
   }
 
   const confirmBtnHandler = () => {
-    dispatch({ type: 'EDIT_TODO', payload: {todo: cacheTodo}});
+    dispatch(editDoneTodo({todo: cacheTodo}));
 
     setIsEditingTodo(!isEditingTodo);
   }
@@ -47,7 +48,7 @@ const TodoItem = ({todo}) => {
             className="checkbox"
             type="checkbox"
             checked={todo.isCompleted}
-            onChange={() => dispatch({ type: 'COMPLETE_TODO', payload: {todo}})}
+            onChange={() => dispatch(completeTodo({todo}))}
           />
           <input
             className="todo-name"
@@ -59,13 +60,13 @@ const TodoItem = ({todo}) => {
           />
         </label>
         <div className="icon-wrapper">
-          <span className="star" onClick={() => dispatch({ type: 'STAR_TODO', payload: {todo}})}>
+          <span className="star" onClick={() => dispatch(starTodo({todo}))}>
             <FontAwesomeIcon icon={faStar}/>
           </span>
           <span className="pen" onClick={() => setIsEditingTodo(!isEditingTodo)}>
             <FontAwesomeIcon icon={faPen}/>
           </span>
-          <span className="delete" onClick={() => dispatch({ type: 'DELETE_TODO', payload: {todo: cacheTodo}})}>
+          <span className="delete" onClick={() => dispatch(deleteTodo({todo}))}>
             <FontAwesomeIcon icon={faTrashAlt}/>
           </span>
         </div>

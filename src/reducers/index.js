@@ -41,10 +41,8 @@ const reducer = (state, action) => {
       return {...state, todos: newTodos};
     }
 
-    case 'SWITCH_TODO': {
-      return {
-        ...state, status: action.payload
-      }
+    case 'SWITCH_STATUS': {
+      return {...state, status: action.payload}
     }
 
     default:

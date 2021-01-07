@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { ContextStore } from '../../App';
 import useSubmitHandler from "../../hooks/useSubmit";
+import { addTodo } from '../../action';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faPen, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +19,7 @@ const AddNewTodo = () => {
   const [isEditingNewTodo, setIsEditingNewTodo] = useState(false);
 
   const confirmBtnHandler = () => {
-    dispatch({type: 'ADD_TODO', payload: {...newTodo, todoId: Date.now()}});
+    dispatch(addTodo({...newTodo, todoId: Date.now()}));
 
     setIsEditingNewTodo(!isEditingNewTodo);
     setNewTodo(defaultNewTodo);

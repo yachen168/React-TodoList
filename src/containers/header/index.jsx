@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ContextStore } from '../../App';
+import { switchStatus } from '../../action';
 
 import { navItems } from '../../constant';
 import './index.scss';
@@ -9,7 +10,7 @@ const Header = () => {
 
   const navItemHandler = (item) => {
     return () => {
-      dispatch({ type: 'SWITCH_TODO', payload: item.status})
+      dispatch(switchStatus(item.status));
     }
   }
 
