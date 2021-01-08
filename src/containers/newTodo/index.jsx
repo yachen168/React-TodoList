@@ -30,13 +30,13 @@ const AddNewTodo = () => {
     setNewTodo(defaultNewTodo);
   }
 
-  const editNewTodo = (e) => {
-    const name = e.currentTarget.dataset.name;
-
-    if (name === 'isStarred' || name === 'isCompleted'){
-      setNewTodo({...newTodo, [name]: !newTodo[name]});
-    }else{
-      setNewTodo({...newTodo, [name]: e.target.value});
+  const editNewTodo = (key) => {
+    return (e) => {
+      if (key === 'isStarred' || key === 'isCompleted'){
+        setNewTodo({...newTodo, [key]: !newTodo[key]});
+      }else{
+        setNewTodo({...newTodo, [key]: e.target.value});
+      }
     }
   }
 
@@ -52,21 +52,19 @@ const AddNewTodo = () => {
             <input
               className="checkbox"
               type="checkbox"
-              data-name="isCompleted"
               checked={newTodo.isCompleted}
-              onChange={editNewTodo}
+              onChange={editNewTodo('isCompleted')}
             />
             <input
               className="todo-name new-todo-name"
               type="text"
               placeholder="Type Something Here…"
-              data-name="todoTitle"
               value={newTodo.todoTitle}
-              onChange={editNewTodo}
+              onChange={editNewTodo('todoTitle')}
             />
           </label>
           <div className="icon-wrapper">
-            <span className="star" data-name="isStarred" onClick={editNewTodo}>
+            <span className="star" onClick={editNewTodo('isStarred')}>
               <FontAwesomeIcon icon={faStar}/>
             </span>
             <span className="pen new-pen">

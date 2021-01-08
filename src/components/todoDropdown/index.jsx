@@ -14,16 +14,14 @@ const TodoDropdown = ({children, todo, editTodo, cancelBtnHandler, submitHandler
             <input
               className="date"
               type="date"
-              data-name="todoDate"
               value={todo.todoDate}
-              onChange={editTodo}
+              onChange={editTodo('todoDate')}
             />
             <input
               className="time"
               type="time"
-              data-name="todoTime"
               value={todo.todoTime}
-              onChange={editTodo}
+              onChange={editTodo('todoTime')}
             />
           </div>
         </div>
@@ -39,9 +37,8 @@ const TodoDropdown = ({children, todo, editTodo, cancelBtnHandler, submitHandler
           <textarea
             className="comment-content"
             placeholder="Type your memo here..."
-            data-name="todoComment"
             value={todo.todoComment}
-            onChange={editTodo}
+            onChange={editTodo('todoComment')}
           ></textarea>
         </div>
       </div>

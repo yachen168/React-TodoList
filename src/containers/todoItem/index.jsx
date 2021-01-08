@@ -16,9 +16,10 @@ const TodoItem = ({todo}) => {
   const [cacheTodo, setCacheTodo] = useState({...todo});
   const [isEditingTodo, setIsEditingTodo] = useState(false);
 
-  const editTodo = (e) => {
-    const name = e.currentTarget.dataset.name;
-    setCacheTodo({...cacheTodo, [name]: e.target.value});
+  const editTodo = (name) => {
+    return (e) => {
+      setCacheTodo({...cacheTodo, [name]: e.target.value});
+    }
   }
 
   const confirmBtnHandler = () => {
@@ -55,8 +56,7 @@ const TodoItem = ({todo}) => {
             type="text"
             placeholder="Type Something Here…"
             value={cacheTodo.todoTitle}
-            data-name="todoTitle"
-            onChange={editTodo}
+            onChange={editTodo('todoTitle')}
           />
         </label>
         <div className="icon-wrapper">
