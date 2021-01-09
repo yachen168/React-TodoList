@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faFile } from '@fortawesome/free-solid-svg-icons';
 
 import './index.scss';
 
-const TodoDropdown = ({children, todo, editTodo, cancelBtnHandler, submitHandler}) => {
+const TodoDropdown = ({children, todo, editTodo}) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -47,6 +49,11 @@ const TodoDropdown = ({children, todo, editTodo, cancelBtnHandler, submitHandler
       </div>
     </div>
   );
+}
+
+TodoDropdown.propTypes = {
+  todo: PropTypes.object.isRequired,
+  editTodo: PropTypes.func.isRequired
 }
 
 export default TodoDropdown;

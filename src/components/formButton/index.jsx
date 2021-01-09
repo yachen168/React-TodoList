@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './index.scss';
 
 const FormButton = ({children, className ,buttonType, clickHandler}) => {
@@ -13,4 +15,10 @@ const FormButton = ({children, className ,buttonType, clickHandler}) => {
   )
 }
 
-export default FormButton
+FormButton.propTypes = {
+  className: PropTypes.string.isRequired,
+  buttonType: PropTypes.string.isRequired,
+  clickHandler: PropTypes.func.isRequired
+}
+
+export default FormButton;
