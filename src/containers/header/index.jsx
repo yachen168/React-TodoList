@@ -11,24 +11,28 @@ const Header = () => {
   const navItemHandler = (item) => {
     return () => {
       dispatch(switchStatus(item.status));
-    }
-  }
+    };
+  };
 
   return (
     <header>
       <nav>
-        {navItems().map(item => {
+        {navItems().map((item) => {
           return (
-            <div key={item.status}
-              className={`nav-item ${state.status === item.status ? 'active' : ''}`}
-              onClick={navItemHandler(item)}>
+            <div
+              key={item.status}
+              className={`nav-item ${
+                state.status === item.status ? 'active' : ''
+              }`}
+              onClick={navItemHandler(item)}
+            >
               {item.title}
             </div>
-          )
+          );
         })}
       </nav>
     </header>
   );
-}
+};
 
 export default Header;

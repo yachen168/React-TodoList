@@ -1,41 +1,41 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect } from 'react';
 import Header from './containers/header';
 import AddNewTodo from './containers/newTodo';
 import TodoList from './containers/todoList';
-import Footer from './containers/footer'
+import Footer from './containers/footer';
 
-import reducer from './reducers'
+import reducer from './reducers';
 
 const ContextStore = createContext();
 
 const initialState = {
   todos: JSON.parse(localStorage.getItem('react-todo')) || [],
-  status: 'all'
-}
+  status: 'all',
+};
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     setLocalStorage();
-   }, [state.todos]);
-  
+  }, [state.todos]);
+
   const setLocalStorage = () => {
     window.localStorage.setItem('react-todo', JSON.stringify(state.todos));
-  }
-  
+  };
+
   return (
-    <ContextStore.Provider value={{state, dispatch}}>
+    <ContextStore.Provider value={{ state, dispatch }}>
       <div className="App">
-        <Header/>
-          <main>
-            <AddNewTodo/>
-            <TodoList/>
-          </main>
-        <Footer/>
+        <Header />
+        <main>
+          <AddNewTodo />
+          <TodoList />
+        </main>
+        <Footer />
       </div>
     </ContextStore.Provider>
   );
-}
+};
 
-export { App, ContextStore};
+export { App, ContextStore };
